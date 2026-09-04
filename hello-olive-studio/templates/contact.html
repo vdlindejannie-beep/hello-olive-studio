@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% title %}Custom Request & Contact | Hello Olive Design Studio{% endblock %}
+{% block extra_head %}
+<style>
+    .contact-container {
+        max-width: 700px;
+        margin: 4rem auto 6rem;
+        background-color: var(--card-black);
+        border: 1px solid rgba(212, 175, 55, 0.2);
+        padding: 3rem;
+    }
+
+    .contact-header {
+        text-align: center;
+        margin-bottom: 2.5rem;
+    }
+
+    .contact-header h1 {
+        font-size: 2.8rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .contact-header p {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+        display: block;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 0.5rem;
+        color: var(--gold);
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 0.9rem;
+        background-color: #121212;
+        border: 1px solid rgba(255,255,255,0.1);
+        color: var(--text-light);
+        font-family: 'Montserrat', sans-serif;
+        font-size: 0.9rem;
+    }
+
+    .form-control:focus {
+        outline: none;
+        border-color: var(--gold);
+    }
+
+    textarea.form-control {
+        resize: vertical;
+        min-height: 140px;
+    }
+
+    .btn-submit {
+        width: 100%;
+        background-color: var(--gold);
+        color: var(--bg-black);
+        border: none;
+        padding: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-top: 1rem;
+    }
+
+    .btn-submit:hover {
+        background-color: var(--olive-light);
+        color: var(--text-light);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="contact-container">
+    <div class="contact-header">
+        <h1>Bespoke Inquiries</h1>
+        <p>Let’s bring your custom design or event vision to life</p>
+    </div>
+
+    <form method="POST">
+        <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" class="form-control" required placeholder="Jane Doe">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" class="form-control" required placeholder="jane@example.com">
+        </div>
+
+        <div class="form-group">
+            <label for="project_type">Project / Request Type</label>
+            <select id="project_type" name="project_type" class="form-control">
+                <option value="Custom Apparel / Hat / Tote">Custom Apparel, Hats or Totes</option>
+                <option value="Glassware / Etching">Custom Glassware</option>
+                <option value="Fine Art Print">Fine Art Print Request</option>
+                <option value="Event Decor / Signage">Event Decor & Signage</option>
+                <option value="Other Bespoke Project">Other Custom Design</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="message">Project Details & Vision</label>
+            <textarea id="message" name="message" class="form-control" required placeholder="Describe your colors, sizing, text, or overall vision..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">Submit Request</button>
+    </form>
+</div>
+{% endblock %}
