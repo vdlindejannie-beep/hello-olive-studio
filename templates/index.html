@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-{% block title %}Hello Olive Design Studio | High-End Art & Custom Goods{% block extra_head %}
+{% block title %}Hello Olive Design Studio | High-End Art & Custom Goods{% endblock %}
+{% block extra_head %}
 <style>
-    /* Hero Section */
     .hero {
         height: 85vh;
         background: linear-gradient(rgba(18,18,18,0.6), rgba(18,18,18,0.85)), url('https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
@@ -12,143 +12,60 @@
         text-align: center;
         padding: 0 1rem;
     }
-
-    .hero h1 {
-        font-size: 3.8rem;
-        color: var(--text-light);
-        margin-bottom: 1rem;
-        font-weight: 400;
-    }
-
-    .hero h1 span {
-        color: var(--gold);
-        font-style: italic;
-    }
-
-    .hero p {
-        font-size: 1rem;
-        max-width: 600px;
-        color: var(--text-muted);
-        text-transform: uppercase;
-        letter-spacing: 0.2em;
-        margin-bottom: 2.5rem;
-    }
-
+    .hero h1 { font-size: 3.8rem; color: var(--text-light); margin-bottom: 1rem; font-weight: 400; }
+    .hero h1 span { color: var(--gold); font-style: italic; }
+    .hero p { font-size: 1rem; max-width: 600px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 2.5rem; }
     .btn-gold {
-        background-color: transparent;
-        color: var(--gold);
-        border: 1px solid var(--gold);
-        padding: 0.9rem 2.2rem;
-        text-decoration: none;
-        text-transform: uppercase;
-        letter-spacing: 0.2em;
-        font-size: 0.8rem;
-        transition: all 0.3s ease;
+        background-color: transparent; color: var(--gold); border: 1px solid var(--gold);
+        padding: 0.9rem 2.2rem; text-decoration: none; text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.8rem; transition: all 0.3s ease;
     }
-
-    .btn-gold:hover {
-        background-color: var(--gold);
-        color: var(--bg-black);
-    }
-
-    /* Overview Section */
-    .services-section {
-        padding: 6rem 8%;
-        background-color: var(--bg-black);
-    }
-
-    .section-title {
-        text-align: center;
-        font-size: 2.5rem;
-        margin-bottom: 3rem;
-        color: var(--text-light);
-    }
-
-    .services-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2.5rem;
-    }
-
+    .btn-gold:hover { background-color: var(--gold); color: var(--bg-black); }
+    .services-section { padding: 6rem 8%; background-color: var(--bg-black); }
+    .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: var(--text-light); }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem; }
     .service-card {
-        background-color: var(--card-black);
-        border: 1px solid rgba(212, 175, 55, 0.15);
-        padding: 3rem 2rem;
-        text-align: center;
-        transition: transform 0.3s ease, border-color 0.3s ease;
+        background-color: var(--card-black); border: 1px solid rgba(212, 175, 55, 0.15); padding: 3rem 2rem; text-align: center; transition: transform 0.3s ease, border-color 0.3s ease;
     }
-
-    .service-card:hover {
-        transform: translateY(-5px);
-        border-color: var(--gold);
-    }
-
-    .service-card h3 {
-        color: var(--gold);
-        font-size: 1.8rem;
-        margin-bottom: 1rem;
-    }
-
-    .service-card p {
-        color: var(--text-muted);
-        font-size: 0.9rem;
-    }
-
-    /* Brand Banner */
-    .brand-story {
-        background-color: var(--soft-olive);
-        padding: 5rem 10%;
-        text-align: center;
-        color: var(--text-light);
-    }
-
-    .brand-story h2 {
-        font-size: 2.5rem;
-        margin-bottom: 1.5rem;
-        color: var(--gold);
-    }
-
-    .brand-story p {
-        max-width: 800px;
-        margin: 0 auto;
-        font-size: 1.05rem;
-        line-height: 1.8;
-        font-weight: 300;
-    }
+    .service-card:hover { transform: translateY(-5px); border-color: var(--gold); }
+    .service-card h3 { color: var(--gold); font-size: 1.8rem; margin-bottom: 1rem; }
+    .service-card p { color: var(--text-muted); font-size: 0.9rem; }
+    .brand-story { background-color: var(--soft-olive); padding: 5rem 10%; text-align: center; color: var(--text-light); }
+    .brand-story h2 { font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--gold); }
+    .brand-story p { max-width: 800px; margin: 0 auto; font-size: 1.05rem; line-height: 1.8; font-weight: 300; }
 </style>
-{% endblock %}{% endblock %}
+{% endblock %}
 
 {% block content %}
 <section class="hero">
-    <h1>Artistry Crafted with <span>Precision</span></h1>
-    <p>Fine Art Prints • Custom Apparel • Event Decor • Bespoke Goods</p>
-    <a href="{{ url_for('shop') }}" class="btn-gold">Explore Collection</a>
+    <h1>{{ t.hero_title }} <span>{{ t.hero_span }}</span></h1>
+    <p>{{ t.hero_sub }}</p>
+    <a href="{{ url_for('shop') }}" class="btn-gold">{{ t.explore }}</a>
 </section>
 
 <section class="services-section">
-    <h2 class="section-title">What We Provide</h2>
+    <h2 class="section-title">{{ t.services_title }}</h2>
     <div class="services-grid">
         <div class="service-card">
-            <h3>Fine Art Printing</h3>
-            <p>Museum-grade printing capabilities transforming digital illustrations and photography into breathtaking tactile canvases and prints.</p>
+            <h3>{{ t.s1_title }}</h3>
+            <p>{{ t.s1_desc }}</p>
         </div>
         <div class="service-card">
-            <h3>Cricut & Custom Apparel</h3>
-            <p>Elevated everyday wear, canvas totes, and hats meticulously designed and detailed with precision-cut custom elements.</p>
+            <h3>{{ t.s2_title }}</h3>
+            <p>{{ t.s2_desc }}</p>
         </div>
         <div class="service-card">
-            <h3>Bespoke Glassware</h3>
-            <p>Sophisticated glassware items featuring custom monograms and minimalist etchings tailored for high-end gifting and home curation.</p>
+            <h3>{{ t.s3_title }}</h3>
+            <p>{{ t.s3_desc }}</p>
         </div>
         <div class="service-card">
-            <h3>Event Decor</h3>
-            <p>Luxurious signage, welcome displays, and personalized touches designed to make weddings and upscale events unforgettable.</p>
+            <h3>{{ t.s4_title }}</h3>
+            <p>{{ t.s4_desc }}</p>
         </div>
     </div>
 </section>
 
 <section class="brand-story">
-    <h2>The Hello Olive Aesthetic</h2>
-    <p>Every piece that leaves our studio is born from a passion for clean lines, high-end design, and exceptional craftsmanship. Whether you are looking for ready-made stock or a personalized statement piece created precisely to your vision, Hello Olive Design Studio brings your aesthetic dreams to reality.</p>
+    <h2>{{ t.story_title }}</h2>
+    <p>{{ t.story_desc }}</p>
 </section>
 {% endblock %}

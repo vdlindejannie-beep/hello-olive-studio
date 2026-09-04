@@ -2,107 +2,30 @@
 {% block title %}Shop Stock Items | Hello Olive Design Studio{% endblock %}
 {% block extra_head %}
 <style>
-    .shop-header {
-        text-align: center;
-        padding: 4rem 1rem 2rem;
-    }
-
-    .shop-header h1 {
-        font-size: 3rem;
-        margin-bottom: 0.5rem;
-        font-family: 'Cormorant Garamond', serif;
-    }
-
-    .shop-header p {
-        color: var(--text-muted);
-        text-transform: uppercase;
-        letter-spacing: 0.15em;
-        font-size: 0.85rem;
-    }
-
-    .products-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2.5rem;
-        padding: 2rem 8% 6rem;
-    }
-
-    .product-card {
-        background-color: var(--card-black);
-        border: 1px solid rgba(212, 175, 55, 0.15);
-        overflow: hidden;
-        transition: transform 0.3s ease;
-    }
-
-    .product-card:hover {
-        transform: translateY(-5px);
-    }
-
-    .product-img {
-        width: 100%;
-        height: 320px;
-        object-fit: cover;
-        border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-    }
-
-    .product-info {
-        padding: 1.5rem;
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-
-    .product-category {
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        letter-spacing: 0.15em;
-        color: var(--gold);
-    }
-
-    .product-title {
-        font-size: 1.3rem;
-        font-family: 'Cormorant Garamond', serif;
-    }
-
-    .product-footer {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 1rem;
-        padding-top: 1rem;
-        border-top: 1px solid rgba(255,255,255,0.05);
-    }
-
-    .product-price {
-        font-size: 1.1rem;
-        font-weight: 500;
-        color: var(--text-light);
-    }
-
+    .shop-header { text-align: center; padding: 4rem 1rem 2rem; }
+    .shop-header h1 { font-size: 3rem; margin-bottom: 0.5rem; font-family: 'Cormorant Garamond', serif; }
+    .shop-header p { color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.85rem; }
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; padding: 2rem 8% 6rem; }
+    .product-card { background-color: var(--card-black); border: 1px solid rgba(212, 175, 55, 0.15); overflow: hidden; transition: transform 0.3s ease; }
+    .product-card:hover { transform: translateY(-5px); }
+    .product-img { width: 100%; height: 320px; object-fit: cover; border-bottom: 1px solid rgba(212, 175, 55, 0.1); }
+    .product-info { padding: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; }
+    .product-category { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold); }
+    .product-title { font-size: 1.3rem; font-family: 'Cormorant Garamond', serif; }
+    .product-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.05); }
+    .product-price { font-size: 1.1rem; font-weight: 500; color: var(--text-light); }
     .btn-buy {
-        background-color: var(--soft-olive);
-        color: var(--text-light);
-        border: none;
-        padding: 0.5rem 1.2rem;
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        text-decoration: none;
+        background-color: var(--soft-olive); color: var(--text-light); border: none; padding: 0.5rem 1.2rem;
+        font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; transition: background-color 0.3s ease; text-decoration: none;
     }
-
-    .btn-buy:hover {
-        background-color: var(--gold);
-        color: var(--bg-black);
-    }
+    .btn-buy:hover { background-color: var(--gold); color: var(--bg-black); }
 </style>
 {% endblock %}
 
 {% block content %}
 <div class="shop-header">
-    <h1>Curated Stock Collection</h1>
-    <p>Hand-crafted goods ready to ship from our studio</p>
+    <h1>{{ t.shop_title }}</h1>
+    <p>{{ t.shop_sub }}</p>
 </div>
 
 <div class="products-grid">
@@ -114,7 +37,7 @@
             <h3 class="product-title">{{ product.name }}</h3>
             <div class="product-footer">
                 <span class="product-price">{{ product.price }}</span>
-                <a href="{{ url_for('contact') }}" class="btn-buy">Inquire / Order</a>
+                <a href="{{ url_for('contact') }}" class="btn-buy">{{ t.inquire }}</a>
             </div>
         </div>
     </div>
