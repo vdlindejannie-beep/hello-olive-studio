@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Hello Olive Design Studio{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-black: #121212;
+            --card-black: #1a1a1a;
+            --soft-olive: #4A5D4E;
+            --olive-light: #6A7F6E;
+            --gold: #D4AF37;
+            --gold-hover: #E5C158;
+            --text-light: #F4F4F2;
+            --text-muted: #A0A09F;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-black);
+            color: var(--text-light);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, .serif-font {
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 0.05em;
+        }
+
+        /* Navigation */
+        header {
+            background-color: rgba(18, 18, 18, 0.95);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 5%;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 600;
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 0.1em;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--gold);
+        }
+
+        /* Flash Messages */
+        .flash-container {
+            max-width: 600px;
+            margin: 1.5rem auto 0;
+            padding: 0 1rem;
+        }
+        .alert {
+            background-color: var(--soft-olive);
+            color: var(--text-light);
+            padding: 1rem;
+            border-left: 4px solid var(--gold);
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        /* Main Content */
+        main {
+            min-height: 80vh;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0d0d0d;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            text-align: center;
+            padding: 3rem 1rem;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        footer span {
+            color: var(--gold);
+        }
+    </style>
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+    <header>
+        <a href="{{ url_for('home') }}" class="logo">HELLO OLIVE DESIGN STUDIO</a>
+        <nav>
+            <a href="{{ url_for('home') }}" class="{% if request.endpoint == 'home' %}active{% endif %}">Home</a>
+            <a href="{{ url_for('shop') }}" class="{% if request.endpoint == 'shop' %}active{% endif %}">Shop</a>
+            <a href="{{ url_for('contact') }}" class="{% if request.endpoint == 'contact' %}active{% endif %}">Custom Request</a>
+        </nav>
+    </header>
+
+    <div class="flash-container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2026 <span>Hello Olive Design Studio</span>. Curated Artistry & Custom Goods.</p>
+    </footer>
+
+</body>
+</html>
